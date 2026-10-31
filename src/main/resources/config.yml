@@ -1,0 +1,86 @@
+# UHCEvents config. Edit here and run /uhcconfig reload, or use /uhcconfig set <key> <value> in-game.
+
+lobby:
+  world: lobby          # created as a void world with a small platform if it doesn't exist.
+  x: 0.5                # Or point this at your own built world and use /uhc setlobby
+  y: 65.0
+  z: 0.5
+  yaw: 0.0
+
+game:
+  min-players: 2
+  countdown-seconds: 30
+  grace-minutes: 15
+  win-screen-seconds: 10
+  disconnect-timeout-seconds: 180   # offline this long = eliminated
+  locator-bar: true
+  disable-portals: true
+  delete-world-after-game: true
+
+border:
+  start-size: 2000
+  final-size: 30
+  shrink-minutes: 30
+  shrink-delay-minutes: 0           # minutes after PvP turns on before shrinking starts
+
+teleport:
+  edge-margin: 150      # players never spawn closer than this to the border
+  min-distance: 250     # preferred minimum distance between players (relaxes if the map is crowded)
+
+worldgen:
+  structures-enabled: true          # master switch, applies to the next game instantly
+  # Per-structure switches. These are written to a datapack in your MAIN world folder,
+  # so changing them needs a server restart.
+  structures:
+    stronghold: true
+    trial_chambers: true
+    woodland_mansion: true
+    ancient_city: true
+    village: true
+    pillager_outpost: true
+    ocean_monument: true
+    mineshaft: true
+    desert_pyramid: true
+    jungle_temple: true
+    igloo: true
+    swamp_hut: true
+    shipwreck: true
+    buried_treasure: true
+    ruined_portal: true
+    ocean_ruin: true
+    trail_ruins: true
+
+modes:                  # game modes / special events, applied when a game is created
+  no-saturation: false
+  one-mace: false       # only ONE mace can be crafted per game + boosted heavy cores from ominous vaults
+  one-mace-heavy-core-chance: 0.5
+  effect: NONE          # NONE, RANDOM, or an effect id (speed, haste, jump_boost, night_vision, ...)
+  effect-amplifier: 0   # 0 = level I
+  effect-pool: [speed, haste, jump_boost, resistance, fire_resistance, night_vision, water_breathing, health_boost]
+
+recipes:
+  remove-vanilla: []    # e.g. [GOLDEN_APPLE] removes ALL vanilla recipes with that result (restart to undo)
+  custom:               # shapeless recipes, up to 9 ingredients
+    wind-charge:
+      enabled: true
+      result: WIND_CHARGE
+      amount: 4
+      ingredients: [BREEZE_ROD]
+    golden-apple:
+      enabled: false
+      result: GOLDEN_APPLE
+      amount: 1
+      ingredients: [APPLE, GOLD_INGOT, GOLD_INGOT, GOLD_INGOT, GOLD_INGOT]
+
+drops:
+  apple-chance: 0.005   # per oak/dark oak leaf (vanilla is about 0.005)
+  # Mob drop multipliers: 0 = none, 0.5 = half, 2 = double. Set in-game with e.g.
+  #   /uhcconfig set drops.mobs.ZOMBIE.ROTTEN_FLESH 0
+  mobs: {}
+
+extras:
+  veinminer:
+    enabled: true       # pickaxes mine whole ore veins, axes fell whole trees
+    max-blocks: 64
+    require-sneak: false
+  autosmelt: true       # ores drop their smelted result
