@@ -1,0 +1,20 @@
+name: UHCEvents
+version: 1.0.0
+main: dev.events.uhc.UHCPlugin
+api-version: '1.21'
+description: Event-server UHC game loop with lobby, border, modes and config.
+commands:
+  uhc:
+    description: Run and manage UHC games
+    usage: /uhc <start|stop|status|spectate|exclude|setlobby>
+  lobby:
+    description: Return to the lobby (only if you are not alive in a game)
+    usage: /lobby
+  uhcconfig:
+    description: Edit the UHC config in-game
+    usage: /uhcconfig <list|get|set|toggle|reload>
+    permission: uhc.admin
+permissions:
+  uhc.admin:
+    description: Manage games and config
+    default: op
